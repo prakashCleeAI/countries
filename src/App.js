@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import CountryTable from "./components/CountryTable";
 import CountryFilters from "./components/CountryFilters";
 import data from "./data/data.json";
+import { AlignedGridsService } from "ag-grid-community";
 
 const REST_COUNTRIES_URL = "https://restcountries.com/v3.1/all";
 
@@ -72,9 +73,13 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Welcome to the Countries App!</h1>
       <CountryFilters
         onSearch={handleSearch}
         toggleFavoriteFilter={toggleFavoriteFilter}
+        style={{
+          paddingBottom: "10px",
+        }}
       />
       <CountryTable
         countries={countriesToShow.filter((country) => {
