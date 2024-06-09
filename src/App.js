@@ -3,13 +3,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import CountryTable from "./components/CountryTable";
 import CountryFilters from "./components/CountryFilters";
-import data from "./data/data.json";
-import { AlignedGridsService } from "ag-grid-community";
 
 const REST_COUNTRIES_URL = "https://restcountries.com/v3.1/all";
 
 function App() {
-  const [countries, setCountries] = useState(data);
+  const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
@@ -30,34 +28,34 @@ function App() {
     console.log("favorites: ", localStorage.getItem("favoriteCountries"));
   }, [favoriteCountries]);
 
-  // useEffect(() => {
-  //   const fetchCountries = async () => {
-  //     setLoading(true);
-  //     const response = await fetch(REST_COUNTRIES_URL).catch((error) => {
-  //       setError(error);
-  //       setLoading(false);
-  //     });
+  useEffect(() => {
+    const fetchCountries = async () => {
+      setLoading(true);
+      const response = await fetch(REST_COUNTRIES_URL).catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
 
-  //     if (response == null) {
-  //       setError(new Error(`HTTP error! response is undefined`));
-  //       setLoading(false);
-  //       return;
-  //     }
+      if (response == null) {
+        setError(new Error(`HTTP error! response is undefined`));
+        setLoading(false);
+        return;
+      }
 
-  //     if (!response.ok) {
-  //       setError(new Error(`HTTP error! status: ${response.status}`));
-  //       setLoading(false);
-  //       return;
-  //     }
+      if (!response.ok) {
+        setError(new Error(`HTTP error! status: ${response.status}`));
+        setLoading(false);
+        return;
+      }
 
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setCountries(data);
-  //     setLoading(false);
-  //   };
+      const data = await response.json();
+      console.log(data);
+      setCountries(data);
+      setLoading(false);
+    };
 
-  //   fetchCountries();
-  // }, []);
+    fetchCountries();
+  }, []);
 
   const handleSearch = (query) => {
     setSearch(query);
@@ -77,6 +75,7 @@ function App() {
       <CountryFilters
         onSearch={handleSearch}
         toggleFavoriteFilter={toggleFavoriteFilter}
+        showingFavorites={showFavorites}
       />
       <CountryTable
         countries={countriesToShow.filter((country) => {

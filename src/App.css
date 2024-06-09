@@ -94,8 +94,8 @@
   cursor: pointer;
 }
 
-.favorite-button {
-  width: 150px;
+.favorites-button {
+  width: 250px;
   padding: 10px;
   background-color: #2196f3;
   color: white;

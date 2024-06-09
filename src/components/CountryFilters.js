@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 
-function CountryFilters({ onSearch, toggleFavoriteFilter }) {
+function CountryFilters({ onSearch, toggleFavoriteFilter, showingFavorites }) {
   const [query, setQuery] = useState("");
 
   const handleChange = (event) => {
     setQuery(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSearch(query);
+    onSearch(event.target.value);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="country-filters">
+    <div className="country-filters">
       <input
         type="text"
         placeholder="Search by name, currency or language"
@@ -21,13 +17,10 @@ function CountryFilters({ onSearch, toggleFavoriteFilter }) {
         onChange={handleChange}
         className="search-input"
       />
-      <button type="submit" className="search-button">
-        Search
-      </button>
       <button onClick={toggleFavoriteFilter} className="favorites-button">
-        Show Favorites
+        {showingFavorites ? "Show All" : "Show Only Favorites"}
       </button>
-    </form>
+    </div>
   );
 }
 
