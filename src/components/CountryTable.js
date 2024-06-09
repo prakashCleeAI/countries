@@ -7,6 +7,7 @@ import CountryDetailsPopup from "./CountryDetailsPopup";
 
 function CountryTable({ countries, loading, error }) {
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [favoriteCountries, setFavoriteCountries] = useState([]); // store favorite countries' cca2 codes
 
   if (loading) {
     return <div>Loading...</div>;
@@ -48,6 +49,41 @@ function CountryTable({ countries, loading, error }) {
       },
       width: 300,
     },
+    {
+      field: "favorite",
+      headerName: "Favorite",
+      width: 150,
+      cellRenderer: (params) => {
+        return (
+          <input
+            type="checkbox"
+            checked={favoriteCountries.includes(params.data.cca2)}
+            onChange={() => {
+              // toggle favorite country.
+              if (favoriteCountries.includes(params.data.cca2)) {
+                setFavoriteCountries(
+                  favoriteCountries.filter((code) => code !== params.data.cca2)
+                );
+              } else {
+                setFavoriteCountries([...favoriteCountries, params.data.cca2]);
+              }
+            }}
+          />
+        );
+      },
+    },
+    {
+      field: "details",
+      headerName: "Details",
+      width: 150,
+      cellRenderer: (params) => {
+        return (
+          <button onClick={() => setSelectedCountry(params.data)}>
+            Details
+          </button>
+        );
+      },
+    },
   ];
 
   const defaultColDef = {
@@ -56,11 +92,7 @@ function CountryTable({ countries, loading, error }) {
     cellStyle: { textAlign: "left" },
   };
 
-  console.log(countries);
-
-  const onRowClicked = (event) => {
-    setSelectedCountry(event.data);
-  };
+  console.log("favorites: ", favoriteCountries);
 
   return (
     <>
@@ -69,7 +101,6 @@ function CountryTable({ countries, loading, error }) {
           rowData={countries}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
-          onRowClicked={onRowClicked}
         />
       </div>
       {selectedCountry && (
