@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import { useEffect, useState } from "react";
 import CountryTable from "./components/CountryTable";
-import Search from "./components/Search";
+import CountryFilters from "./components/CountryFilters";
 import data from "./data/data.json";
 
 const REST_COUNTRIES_URL = "https://restcountries.com/v3.1/all";
@@ -12,6 +12,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
+  const [showFavorites, setShowFavorites] = useState(false); // show only favorite countries
+  const [favoriteCountries, setFavoriteCountries] = useState([]); // store favorite countries' cca2 codes
 
   // useEffect(() => {
   //   const fetchCountries = async () => {
@@ -46,11 +48,22 @@ function App() {
     setSearch(query);
   };
 
+  const toggleFavoriteFilter = () => {
+    setShowFavorites(!showFavorites);
+  };
+
+  const countriesToShow = showFavorites
+    ? countries.filter((country) => favoriteCountries.includes(country.cca2))
+    : countries;
+
   return (
     <div className="App">
-      <Search onSearch={handleSearch} />
+      <CountryFilters
+        onSearch={handleSearch}
+        toggleFavoriteFilter={toggleFavoriteFilter}
+      />
       <CountryTable
-        countries={countries.filter((country) => {
+        countries={countriesToShow.filter((country) => {
           // Filter countries based on search query
           if (!search) return true;
           return (
@@ -79,6 +92,8 @@ function App() {
         })}
         loading={loading}
         error={error}
+        favoriteCountries={favoriteCountries}
+        setFavoriteCountries={setFavoriteCountries}
       />
     </div>
   );

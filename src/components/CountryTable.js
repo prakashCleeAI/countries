@@ -5,9 +5,14 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 
 import CountryDetailsPopup from "./CountryDetailsPopup";
 
-function CountryTable({ countries, loading, error }) {
+function CountryTable({
+  countries,
+  loading,
+  error,
+  favoriteCountries,
+  setFavoriteCountries,
+}) {
   const [selectedCountry, setSelectedCountry] = useState(null);
-  const [favoriteCountries, setFavoriteCountries] = useState([]); // store favorite countries' cca2 codes
 
   if (loading) {
     return <div>Loading...</div>;

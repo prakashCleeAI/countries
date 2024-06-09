@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Search({ onSearch }) {
+function CountryFilters({ onSearch, toggleFavoriteFilter }) {
   const [query, setQuery] = useState("");
 
   const handleChange = (event) => {
@@ -27,8 +27,11 @@ function Search({ onSearch }) {
       <button type="submit" style={{ width: "150px" }}>
         Search
       </button>
+      <button onClick={toggleFavoriteFilter} style={{ width: "150px" }}>
+        Show Favorites
+      </button>
     </form>
   );
 }
 
-export default Search;
+export default CountryFilters;
