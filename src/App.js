@@ -47,7 +47,37 @@ function App() {
   return (
     <div className="App">
       <Search onSearch={handleSearch} />
-      <CountryTable countries={countries} loading={loading} error={error} />
+      <CountryTable
+        countries={countries.filter((country) => {
+          // Filter countries based on search query
+          if (!search) return true;
+          return (
+            (country &&
+              country.name &&
+              country.name.common
+                .toLowerCase()
+                .includes(search.toLowerCase())) ||
+            (country.languages &&
+              Object.values(country.languages).some(
+                (lang) =>
+                  lang &&
+                  lang.name &&
+                  lang.name.common &&
+                  lang.name.common.toLowerCase().includes(search.toLowerCase())
+              )) ||
+            (country.currencies &&
+              Object.values(country.currencies).some(
+                (curr) =>
+                  curr &&
+                  curr.name &&
+                  curr.name.common &&
+                  curr.name.common.toLowerCase().includes(search.toLowerCase())
+              ))
+          );
+        })}
+        loading={loading}
+        error={error}
+      />
     </div>
   );
 }
