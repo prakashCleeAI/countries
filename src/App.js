@@ -90,18 +90,14 @@ function App() {
             (country.languages &&
               Object.values(country.languages).some(
                 (lang) =>
-                  lang &&
-                  lang.name &&
-                  lang.name.common &&
-                  lang.name.common.toLowerCase().includes(search.toLowerCase())
+                  lang && lang.toLowerCase().includes(search.toLowerCase())
               )) ||
             (country.currencies &&
               Object.values(country.currencies).some(
                 (curr) =>
                   curr &&
                   curr.name &&
-                  curr.name.common &&
-                  curr.name.common.toLowerCase().includes(search.toLowerCase())
+                  curr.name.toLowerCase().includes(search.toLowerCase())
               ))
           );
         })}
