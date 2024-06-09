@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Instructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+Run 'npm install' to install dependecies.
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When you launch the app you see a search bar and a toggle button 'show only favorites'/'show all' at the top.
+Underneath those there is a scrollable table which is showing countries fetched from 'https://restcountries.com/v3.1/all' api.
+The table has columns showing some details about each countries namely:
 
-### `npm test`
+1. Name
+2. Flag
+3. Population
+4. Languages
+5. Currencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There is a column 'Favorite', which has a checkbox in each row to mark corresponding country as favorite.
+There is a column 'Details', which has a button in each row to get more details about corresponding country.
+When you click the 'Details' button, a popup opens showing more details (a subset of details available from
+'https://restcountries.com/v3.1/all' api) about the country. Each column in the table is sortable (by
+clicking the column header), and filter can be applied on each column using menu button on the column.
 
-### `npm run build`
+Search bar at the top, can be used to search a country by name, currency or language.
+Click 'show only favorites' button to only see countries marked as favorite in the table, subsequently you can
+use search on that subset of countries. When clicked the button changes to 'show all'
+Click 'show all' button to see all countries, regardless of favorite markings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Comments
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+All the 'Requirements' mentioned in the Take_Home_Task.pdf have been implemented, namely:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Build the frontend of the application using React to create a seamless single-page experience.
+2. Utilize the REST Countries API (https://restcountries.com/) to fetch the list of countries and their details.
+3. Display a list of countries on the page, showing their name, flag, and basic information like population,
+   language(s), and currency/currencies.
+4. Implement a search functionality that allows users to search for countries by name, language, or currency
+   without triggering a page reload.
+5. Use Ag-Grid to display the list.
+6. Display the search results in a list format, showing relevant information for each country, all within the same
+   page.
+7. Allow users to view the full details of a country when clicking on row, without navigating to a separate page.
+8. Implement a favorites feature that allows users to mark countries as favorites and view their list of favorite
+   countries.
+9. Use local storage to persist the user's favorite countries between page reloads.
+10. Add appropriate error handling for cases like API failures or invalid requests.
 
-### `npm run eject`
+Additionally following requirements from 'Bonus Points (Optional)' section have also been implemented:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Include sorting options for the list of countries, e.g., sort by name, population, or currency.
+2. Add a feature to filter countries based on various criteria, e.g., filter by language or currency.
+3. Style Ag-Grid for visual appeal and usability
