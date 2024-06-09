@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { useEffect, useState } from "react";
+import CountryTable from "./components/CountryTable";
 
 const REST_COUNTRIES_URL = "https://restcountries.com/v3.1/all";
 
@@ -17,7 +18,13 @@ function App() {
     fetchCountries();
   }, []);
 
-  return <div className="App">{JSON.stringify(countries)}</div>;
+  return (
+    <div className="App">
+      <div className="content">
+        <CountryTable countries={countries} />
+      </div>
+    </div>
+  );
 }
 
 export default App;
