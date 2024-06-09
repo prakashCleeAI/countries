@@ -13,7 +13,21 @@ function App() {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [showFavorites, setShowFavorites] = useState(false); // show only favorite countries
-  const [favoriteCountries, setFavoriteCountries] = useState([]); // store favorite countries' cca2 codes
+  const storedFavorites = localStorage.getItem("favoriteCountries");
+
+  // store favorite countries' cca2 codes
+  const [favoriteCountries, setFavoriteCountries] = useState(
+    storedFavorites ? JSON.parse(storedFavorites) : []
+  );
+
+  useEffect(() => {
+    localStorage.setItem(
+      "favoriteCountries",
+      JSON.stringify(favoriteCountries)
+    );
+
+    console.log("favorites: ", localStorage.getItem("favoriteCountries"));
+  }, [favoriteCountries]);
 
   // useEffect(() => {
   //   const fetchCountries = async () => {

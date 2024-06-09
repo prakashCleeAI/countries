@@ -97,8 +97,6 @@ function CountryTable({
     cellStyle: { textAlign: "left" },
   };
 
-  console.log("favorites: ", favoriteCountries);
-
   return (
     <>
       <div className="ag-theme-alpine" style={{ height: 600 }}>
