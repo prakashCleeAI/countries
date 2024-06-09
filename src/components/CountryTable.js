@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
+import CountryDetailsPopup from "./CountryDetailsPopup";
+
 function CountryTable({ countries, loading, error }) {
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -54,14 +58,27 @@ function CountryTable({ countries, loading, error }) {
 
   console.log(countries);
 
+  const onRowClicked = (event) => {
+    setSelectedCountry(event.data);
+  };
+
   return (
-    <div className="ag-theme-alpine" style={{ height: 600 }}>
-      <AgGridReact
-        rowData={countries}
-        columnDefs={columnDefs}
-        defaultColDef={defaultColDef}
-      />
-    </div>
+    <>
+      <div className="ag-theme-alpine" style={{ height: 600 }}>
+        <AgGridReact
+          rowData={countries}
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+          onRowClicked={onRowClicked}
+        />
+      </div>
+      {selectedCountry && (
+        <CountryDetailsPopup
+          country={selectedCountry}
+          onClose={() => setSelectedCountry(null)}
+        />
+      )}
+    </>
   );
 }
 
