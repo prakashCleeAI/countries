@@ -56,12 +56,6 @@
   text-align: center;
 }
 
-.country-table {
-  width: 1500px;
-  margin: 0 auto;
-  height: 800px;
-}
-
 .country-table .ag-theme-alpine {
   height: 800px;
 }

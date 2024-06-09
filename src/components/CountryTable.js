@@ -98,8 +98,11 @@ function CountryTable({
   };
 
   return (
-    <div className="country-table">
-      <div className="ag-theme-alpine">
+    <>
+      <div
+        className="ag-theme-alpine"
+        style={{ height: 800, width: 1400, margin: "auto" }}
+      >
         <AgGridReact
           rowData={countries}
           columnDefs={columnDefs}
@@ -112,7 +115,7 @@ function CountryTable({
           onClose={() => setSelectedCountry(null)}
         />
       )}
-    </div>
+    </>
   );
 }
 
