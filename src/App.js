@@ -77,9 +77,6 @@ function App() {
       <CountryFilters
         onSearch={handleSearch}
         toggleFavoriteFilter={toggleFavoriteFilter}
-        style={{
-          paddingBottom: "10px",
-        }}
       />
       <CountryTable
         countries={countriesToShow.filter((country) => {

@@ -98,13 +98,8 @@ function CountryTable({
   };
 
   return (
-    <div
-      style={{
-        width: "1405px",
-        margin: "auto",
-      }}
-    >
-      <div className="ag-theme-alpine" style={{ height: 800 }}>
+    <div className="country-table">
+      <div className="ag-theme-alpine">
         <AgGridReact
           rowData={countries}
           columnDefs={columnDefs}

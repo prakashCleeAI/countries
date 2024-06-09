@@ -13,57 +13,18 @@ function CountryFilters({ onSearch, toggleFavoriteFilter }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "space-around",
-        paddingTop: "10px",
-        paddingBottom: "10px",
-        backgroundColor: "#f2f2f2",
-        borderRadius: "5px",
-      }}
-    >
+    <form onSubmit={handleSubmit} className="country-filters">
       <input
         type="text"
         placeholder="Search by name, currency or language"
         value={query}
         onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: "10px",
-          border: "none",
-          borderRadius: "5px",
-          marginRight: "10px",
-        }}
+        className="search-input"
       />
-      <button
-        type="submit"
-        style={{
-          width: "150px",
-          padding: "10px",
-          backgroundColor: "#4CAF50",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
+      <button type="submit" className="search-button">
         Search
       </button>
-      <button
-        onClick={toggleFavoriteFilter}
-        style={{
-          width: "150px",
-          padding: "10px",
-          backgroundColor: "#2196F3",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
+      <button onClick={toggleFavoriteFilter} className="favorites-button">
         Show Favorites
       </button>
     </form>
