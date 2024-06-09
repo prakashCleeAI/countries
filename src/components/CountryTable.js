@@ -3,7 +3,15 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-function CountryTable({ countries }) {
+function CountryTable({ countries, loading, error }) {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   const columnDefs = [
     {
       field: "name",
@@ -43,6 +51,8 @@ function CountryTable({ countries }) {
     filter: true,
     cellStyle: { textAlign: "left" },
   };
+
+  console.log(countries);
 
   return (
     <div className="ag-theme-alpine" style={{ height: 600 }}>
